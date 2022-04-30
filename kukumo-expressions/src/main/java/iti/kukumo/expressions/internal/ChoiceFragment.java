@@ -1,4 +1,4 @@
-package iti.kukumo.core.expressions.internal;
+package iti.kukumo.expressions.internal;
 
 import java.util.Collections;
 import java.util.stream.Collectors;

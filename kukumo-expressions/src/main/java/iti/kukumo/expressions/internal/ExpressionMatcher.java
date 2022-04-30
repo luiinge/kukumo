@@ -1,38 +1,16 @@
-package iti.kukumo.core.expressions.internal;
+package iti.kukumo.expressions.internal;
 
-import iti.kukumo.core.exceptions.KukumoException;
-import iti.kukumo.core.expressions.*;
+
+import iti.kukumo.expressions.*;
 import iti.kukumo.plugin.api.*;
 import java.util.*;
 
-import iti.kukumo.core.util.Regex;
-import lombok.*;
 
 public class ExpressionMatcher implements ExpressionMatch {
 
 
-
-
-    @Setter @AllArgsConstructor(access = AccessLevel.PRIVATE)
-    public static class ExpressionMatchBuilder {
-
-        private String text;
-        private DataTypes dataTypes;
-        private SubExpressions subExpressions;
-        private Locale locale;
-
-        ExpressionMatcher build() {
-            return new ExpressionMatcher(
-                Objects.requireNonNull(text),
-                Objects.requireNonNull(dataTypes),
-                Objects.requireNonNull(subExpressions),
-                Objects.requireNonNull(locale)
-            );
-        }
-    }
-
     public static ExpressionMatchBuilder builder (String text) {
-        return new ExpressionMatchBuilder(text,DataTypes.of(),SubExpressions.of(),Locale.ENGLISH);
+        return new ExpressionMatchBuilder(text,DataTypes.of(), Subexpressions.of(),Locale.ENGLISH);
     }
 
 
@@ -43,9 +21,9 @@ public class ExpressionMatcher implements ExpressionMatch {
     private final Map<String, ExpressionArgument> arguments = new HashMap<>();
     private boolean rejected = false;
     private final DataTypes dataTypes;
-    private final SubExpressions subExpressions;
+    private final Subexpressions subExpressions;
 
-    ExpressionMatcher(String text, DataTypes dataTypes, SubExpressions subExpressions, Locale locale) {
+    public ExpressionMatcher(String text, DataTypes dataTypes, Subexpressions subExpressions, Locale locale) {
         this.text = Regex.replace(text.strip(), "\\s+", " ");
         this.dataTypes = dataTypes;
         this.subExpressions = subExpressions;
@@ -80,13 +58,13 @@ public class ExpressionMatcher implements ExpressionMatch {
         return dataTypes;
     }
 
-    SubExpressions subexpressions() {
+    Subexpressions subexpressions() {
         return subExpressions;
     }
 
     void addArgument(ExpressionArgument argument) {
         if (arguments.containsKey(argument.name())) {
-            throw new KukumoException("Argument name {} is already used",argument.name());
+            throw new KukumoPluginException("Argument name {} is already used",argument.name());
         }
         arguments.put(argument.name(),argument);
     }

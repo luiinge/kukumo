@@ -1,6 +1,7 @@
-package iti.kukumo.core.expressions;
+package iti.kukumo.expressions;
 
-import iti.kukumo.core.expressions.internal.DefaultStepExpressionParser;
+
+import iti.kukumo.expressions.internal.DefaultStepExpressionParser;
 
 public interface StepExpressionParser {
 

@@ -1,15 +1,14 @@
-package iti.kukumo.plugin.api;
+package iti.kukumo.expressions;
 
-import iti.kukumo.plugin.api.contributions.*;
 import java.util.*;
 import java.util.stream.*;
 
 import org.jexten.ExtensionManager;
 
-public class SubExpressions {
+public class Subexpressions {
 
-    public static SubExpressions of (Subexpression... subExpressions) {
-        return new SubExpressions(Arrays.asList(subExpressions));
+    public static Subexpressions of (Subexpression... subExpressions) {
+        return new Subexpressions(Arrays.asList(subExpressions));
     }
 
 
@@ -17,13 +16,13 @@ public class SubExpressions {
     private final List<String> allNames;
 
 
-    public SubExpressions(List<Subexpression> dataTypes) {
+    public Subexpressions(List<Subexpression> dataTypes) {
         this.byName = dataTypes.stream().collect(Collectors.toMap(Subexpression::name, e -> e));
         this.allNames = dataTypes.stream().map(Subexpression::name).sorted().toList();
     }
 
 
-    SubExpressions(ExtensionManager extensionManager) {
+    Subexpressions(ExtensionManager extensionManager) {
         var dataTypes = extensionManager.getExtensions(Subexpression.class).toList();
         this.byName = dataTypes.stream().collect(Collectors.toMap(Subexpression::name, e -> e));
         this.allNames = dataTypes.stream().map(Subexpression::name).sorted().toList();

@@ -1,6 +1,7 @@
-package iti.kukumo.core.expressions;
+package iti.kukumo.expressions;
 
-import iti.kukumo.core.expressions.internal.*;
+
+import iti.kukumo.expressions.internal.*;
 
 public interface StepExpression {
 
@@ -8,7 +9,7 @@ public interface StepExpression {
         return DefaultStepExpressionParser.parse(step);
     }
 
-    ExpressionMatcher match(ExpressionMatcher.ExpressionMatchBuilder match);
+    ExpressionMatch match(ExpressionMatchBuilder match);
 
 
 }

@@ -1,7 +1,7 @@
-package iti.kukumo.core.expressions.internal;
+package iti.kukumo.expressions.internal;
 
 
-import iti.kukumo.core.expressions.*;
+import iti.kukumo.expressions.*;
 
 interface EvaluableFragment extends StepExpression {
 
@@ -9,8 +9,8 @@ interface EvaluableFragment extends StepExpression {
 
 
     @Override
-    default ExpressionMatcher match(ExpressionMatcher.ExpressionMatchBuilder matchBuilder) {
-        ExpressionMatcher match = matchBuilder.build();
+    default ExpressionMatcher match(ExpressionMatchBuilder matchBuilder) {
+        ExpressionMatcher match = (ExpressionMatcher) matchBuilder.build();
         consumeFragment(match);
         return match;
     }

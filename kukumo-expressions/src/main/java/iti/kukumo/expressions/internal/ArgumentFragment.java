@@ -1,12 +1,12 @@
-package iti.kukumo.core.expressions.internal;
+package iti.kukumo.expressions.internal;
 
 
-import iti.kukumo.core.exceptions.KukumoException;
-import iti.kukumo.core.expressions.*;
-import iti.kukumo.core.util.Regex;
+import iti.kukumo.expressions.ExpressionArgument;
+import iti.kukumo.plugin.api.KukumoPluginException;
 import iti.kukumo.plugin.api.contributions.DataType;
 import java.util.Objects;
 import java.util.regex.*;
+
 
 final class ArgumentFragment extends StepExpressionFragment implements EvaluableFragment {
 
@@ -33,7 +33,7 @@ final class ArgumentFragment extends StepExpressionFragment implements Evaluable
     @Override
     public boolean consumeFragment(ExpressionMatcher match) {
         DataType<?> dataType = match.dataTypes().getByName(type).orElseThrow(
-            ()->new KukumoException(
+            ()->new KukumoPluginException(
                 "Unknown data type {}. Valid data types are: {}\n    ",
                 type,
                 String.join("\n    ",match.dataTypes().allNames())

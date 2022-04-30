@@ -1,8 +1,9 @@
-package iti.kukumo.core.expressions;
+package iti.kukumo.expressions;
 
-import iti.kukumo.core.exceptions.KukumoException;
 
-public class ExpressionParsingException extends KukumoException {
+import iti.kukumo.plugin.api.KukumoPluginException;
+
+public class ExpressionParsingException extends KukumoPluginException {
 
     public ExpressionParsingException(String text, int position, String error) {
         super(

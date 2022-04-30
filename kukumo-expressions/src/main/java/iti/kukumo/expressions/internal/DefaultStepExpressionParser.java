@@ -1,6 +1,7 @@
-package iti.kukumo.core.expressions.internal;
+package iti.kukumo.expressions.internal;
 
-import iti.kukumo.core.expressions.*;
+
+import iti.kukumo.expressions.*;
 import java.util.*;
 
 

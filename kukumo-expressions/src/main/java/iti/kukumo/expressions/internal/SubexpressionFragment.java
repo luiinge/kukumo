@@ -1,8 +1,8 @@
-package iti.kukumo.core.expressions.internal;
+package iti.kukumo.expressions.internal;
 
-import iti.kukumo.core.exceptions.KukumoException;
-import iti.kukumo.core.util.Regex;
-import iti.kukumo.plugin.api.contributions.*;
+
+import iti.kukumo.expressions.Subexpression;
+import iti.kukumo.plugin.api.KukumoPluginException;
 import java.util.Objects;
 import java.util.regex.*;
 
@@ -31,7 +31,7 @@ final class SubexpressionFragment extends StepExpressionFragment implements Eval
     @Override
     public boolean consumeFragment(ExpressionMatcher match) {
         Subexpression subexpression = match.subexpressions().getByName(type).orElseThrow(
-            ()->new KukumoException(
+            ()->new KukumoPluginException(
                 "Unknown subexpression {}. Valid subexpressions are: {}\n    ",
                 type,
                 String.join("\n    ",match.subexpressions().allNames())

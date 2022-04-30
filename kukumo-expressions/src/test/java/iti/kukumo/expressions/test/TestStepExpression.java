@@ -1,10 +1,7 @@
-package iti.kukumo.core.test.expressions;
+package iti.kukumo.expressions.test;
 
 
-
-import iti.kukumo.core.datatypes.DecimalDataType;
-import iti.kukumo.core.expressions.*;
-import iti.kukumo.core.expressions.internal.ExpressionMatcher;
+import iti.kukumo.expressions.*;
 import iti.kukumo.plugin.api.DataTypes;
 import java.math.BigDecimal;
 import java.util.*;
@@ -15,13 +12,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
+
 class TestStepExpression {
 
 
     private static final DataTypes dataTypes = new DataTypes(List.of(new DecimalDataType()));
 
-    private static ExpressionMatcher.ExpressionMatchBuilder builder (String step) {
-        return ExpressionMatcher.builder(step).locale(Locale.ENGLISH).dataTypes(dataTypes);
+    private static ExpressionMatchBuilder builder (String step) {
+        return ExpressionMatch.builder(step).locale(Locale.ENGLISH).dataTypes(dataTypes);
     }
 
     // expression:  the following is inserted in the database

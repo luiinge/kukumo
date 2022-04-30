@@ -1,6 +1,5 @@
-package iti.kukumo.core.expressions.internal;
+package iti.kukumo.expressions.internal;
 
-import iti.kukumo.core.util.Regex;
 import java.util.Objects;
 import java.util.regex.Pattern;
 

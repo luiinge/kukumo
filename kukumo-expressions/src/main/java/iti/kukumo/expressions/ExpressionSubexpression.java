@@ -1,4 +1,4 @@
-package iti.kukumo.core.expressions;
+package iti.kukumo.expressions;
 
 public class ExpressionSubexpression {
 

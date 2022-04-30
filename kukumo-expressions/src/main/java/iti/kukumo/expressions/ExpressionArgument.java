@@ -1,4 +1,4 @@
-package iti.kukumo.core.expressions;
+package iti.kukumo.expressions;
 
 import iti.kukumo.plugin.api.contributions.DataType;
 import java.util.Locale;

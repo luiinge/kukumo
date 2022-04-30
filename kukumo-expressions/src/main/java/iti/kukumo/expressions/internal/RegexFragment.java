@@ -1,8 +1,7 @@
-package iti.kukumo.core.expressions.internal;
+package iti.kukumo.expressions.internal;
 
 
-import iti.kukumo.core.expressions.*;
-import iti.kukumo.core.util.Regex;
+import iti.kukumo.expressions.StepExpression;
 import java.util.*;
 import java.util.regex.Pattern;
 
