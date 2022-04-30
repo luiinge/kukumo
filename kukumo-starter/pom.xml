@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>es.iti</groupId>
+    <artifactId>kukumo-starter</artifactId>
+    <version>2.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>Kukumo Starter</name>
+
+    <properties>
+        <!-- general properties -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>17</java.version>
+        <!-- build plugins' versions -->
+        <maven.compiler.version>3.8.1</maven.compiler.version>
+        <maven.version>3.8.3</maven.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.verbose>false</maven.compiler.verbose>
+        <lombok.version>1.18.22</lombok.version>
+        <jexten-annotation-processor.version>1.0.0</jexten-annotation-processor.version>
+    </properties>
+
+
+    <build>
+
+
+        <plugins>
+            <!--
+            specific version of maven compiler, since Java modules are not well managed in some
+            versions. Also, activate lint=all
+            -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                    <verbose>${maven.compiler.verbose}</verbose>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                    </compilerArgs>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <!-- apparently forking doesn't work well with java module paths -->
+                    <forkCount>0</forkCount>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+      </plugins>
+    </build>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>es.iti</groupId>
+                <artifactId>kukumo-bom</artifactId>
+                <version>2.0.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+
+</project>

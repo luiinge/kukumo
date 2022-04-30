@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>kukumo-starter</artifactId>
+        <groupId>es.iti</groupId>
+        <version>2.0.0</version>
+        <relativePath>../kukumo-starter</relativePath>
+    </parent>
+
+    <artifactId>kukumo-plugin-starter</artifactId>
+    <version>2.0.0</version>
+    <packaging>pom</packaging>
+    <name>Kukumo Plugin Starter</name>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>es.iti</groupId>
+            <artifactId>kukumo-plugin-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <!-- compile with lombok and jexten-annotation-processor -->
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                    <verbose>${maven.compiler.verbose}</verbose>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                    </compilerArgs>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.jexten</groupId>
+                            <artifactId>jexten-annotation-processor</artifactId>
+                            <version>${jexten-annotation-processor.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <!-- attach maven-jar-plugin to non-existing phase to avoid its execution -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- generate plugin artifact -->
+            <plugin>
+                <groupId>org.jexten</groupId>
+                <artifactId>jexten-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <application>kukumo</application>
+                    <hostArtifact>es.iti:kukumo-plugin-api</hostArtifact>
+                    <bundledPlugin>true</bundledPlugin>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>assemble</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+</project>
